@@ -1,0 +1,463 @@
+.speed-test-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #000;
+  color: white;
+}
+
+/* Header Styles */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: #000;
+  /* Ensure header stays on top */
+  position: sticky;
+  top: 0;
+  z-index: 3; /* Higher than main content */
+}
+
+.logo-left, .logo-right {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.logo-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.header-title {
+  font-size: 15px;
+  font-weight: 400;
+  font-style:normal;
+  text-align: center;
+  margin: 0;
+  flex-grow: 1;
+}
+
+/* Main Content */
+.main-content {
+  flex-grow: 1;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+  position: relative; /* To contain absolutely positioned elements */
+  overflow-y: auto; /* Enable scrolling for the fading effect */
+}
+
+.previous-tests-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  z-index: 1; /* Ensure it's below the current test */
+}
+
+.previous-speed-item {
+  opacity: 0.2;
+  font-size: 14px;
+}
+
+.previous-download {
+  color: #4CAF50;
+  margin-right: 10px;
+}
+
+.previous-upload {
+  color: #9C27B0;
+}
+
+.current-test-container {
+  position: relative; /* For stacking context */
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 2; /* Ensure it's above the previous tests */
+}
+
+.speed-display {
+  position: absolute;/* Absolute positioning */
+  top: 50%; /* Position from the top 50% */
+  left: 0;/* No horizontal centering */
+    right: 0; /* Ensure it stretches across horizontally */
+    transform: translateY(-50%); /* Center it vertically by shifting it up */
+
+    display: flex;
+
+  flex-direction: column;
+
+  justify-content: center; /* Vertically center the content */
+
+  align-items: center;
+  margin-bottom: 100px;
+}
+
+.speed-main {
+  /* New style for the main speed display content */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  /* Positioning the content to the rightmost center */
+  position: absolute;
+  right: 0; /* Align it to the right edge */
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%); /* Adjust vertical centering */
+  z-index: 1; /* Ensure it's on top of other content */
+}
+
+
+.speed-text {
+  font-size: 300px;
+  font-weight: normal;
+  text-align: center; /* Ensure text is centered */
+}
+
+.mbps-text {
+  font-size: 26px;
+  font-weight:bold;
+  font-style: normal;
+}
+
+.go-btn {
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding: 0;
+  background-color: transparent;
+}
+
+.go-btn-container {
+  position: relative;
+  display: inline-block;
+}
+
+.go-image {
+  width: 75px;
+  height: 75px;
+  object-fit: contain;
+}
+.up-image {
+  width: 40px;
+  height: 80px;
+  object-fit: contain;
+}
+.go-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+}
+
+/* More Info Button */
+.more-info-btn {
+  font-size: 15px;
+  font-weight: lighter;
+  padding: 8px 16px;
+  background-color: transparent;
+  color: #888;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  position: absolute; /* Absolute positioning */
+  top: calc(100% - 10px); /* Move it slightly up */
+  right: 10px; /* Add a bit of margin to the right */
+  transform: translateX(0); /* Align it to the right */
+  z-index: 1; /* Make sure it stays above the faded background, but below the main content */
+}
+
+.more-info-btn:hover {
+  background-color: #222;
+}
+
+
+
+.hidden {
+  margin-top: 100px;
+}
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.spinner {
+  font-size: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Footer Styles */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: #000;
+}
+
+.footer-left, .footer-right {
+  display: flex;
+  align-items: center;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-image {
+  width: 85px;
+  height: 60px;
+  object-fit: contain;
+}
+
+/* Details View */
+.details-view {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  z-index: 10;
+}
+
+/* Details Header */
+.details-header {
+ display: flex;
+ flex-direction: column;
+   align-items: flex-start;
+  margin-bottom: 0px;
+
+  }
+
+.details-title {
+  font-size: 18px;
+  font-weight: 100;
+  font-style: normal;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.back-button {
+  cursor: pointer;
+}
+
+.back-arrow-image {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+/* City Country Container */
+.city-country-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.city-country-icon {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.placeholder-icon {
+  width: 30px;
+  height: 30px;
+  visibility: hidden;
+}
+
+.city-country-image {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+
+.city-country-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: calc(100% - 50px);
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.flag-icon, .user-icon, .wifi-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.detail-label {
+  font-weight: 100;
+  font-style: normal;
+  width: 150px;
+  font-size: 15px;
+  margin-right: 5px;
+}
+
+.detail-value {
+  font-size: 15px;
+  font-weight: 400;
+  font-style: bolder;
+  flex: 1;
+}
+
+/* Details Content */
+.details-content {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  text-align: left;
+  position: relative;
+  width: 100%;
+}
+
+/* Speed Info Section in Details */
+.details-speed-info {
+  margin-top: 30px;
+  margin-left: auto; /* This will push the element to the rightmost part */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  max-width: 50%; /* Ensures the speed info doesn't take the entire width */
+margin-bottom: 200px;
+
+  }
+
+
+  .details-speed-group {
+
+     margin-bottom: 15px;
+    
+     display: flex;
+    
+     align-items: center;
+    
+    }
+    
+    
+    
+    .details-speed-value {
+    
+     font-size: 150px;
+    
+     font-weight: normal;
+    
+     margin-right: 10px;
+    
+    }
+    
+    
+    
+    .details-speed-unit {
+    
+     display: flex;
+    
+     flex-direction: column;
+    
+    }
+    
+    
+    
+    .details-mbps {
+    
+     font-size: 18px;
+    
+     font-weight: normal;
+    
+     color: #888;
+    
+    }
+    
+    
+    
+    .details-type-download {
+    
+     font-size: 18px;
+    
+     color: #4CAF50;
+    
+    }
+    
+    
+    
+    .details-type-upload {
+    
+   font-size: 18px;
+    
+     color: #9C27B0;
+    
+    }
+    
+    
+.details-type-download, .details-type-upload {
+  font-size: 16px;
+  text-align: left; /* Ensure text is left-aligned */
+}
+
+.details-type-download img, .details-type-upload img {
+  margin-right: 5px;
+  vertical-align: middle;
+}
